@@ -1,0 +1,22 @@
+{
+  "name": "sabesp-mananciais-api",
+  "version": "0.0.1",
+  "description": "A simple scraping from sabesp website",
+  "main": "index.js",
+  "author": "Rafaell Lycan <sonny.webdsg@gmail.com>",
+  "keywords": [
+    "sabesp",
+    "scraping",
+    "mananciais",
+    "água"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "express": "^4.11.2",
+    "request": "^2.53.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.3.6"
+  }
+}
