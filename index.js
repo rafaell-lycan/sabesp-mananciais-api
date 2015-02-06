@@ -51,40 +51,41 @@
           // Fetch each images on context
           data.find('img').each(function (i, elem) {
             json[i] = {
-              name : getSistemaName(elem.attribs.src)
+              name : getSistemaName(elem.attribs.src),
+              data : []
             };
           });
 
           // Fetch each td with content "volume armazenado"
           data.find('td:contains(volume armazenado)').each(function (i, elem) {
-            json[i].vol = {
-              desc : 'volume armazenado',
-              val : $(elem).next().text()
-            };
+            json[i].data.push({
+              key : 'volume armazenado',
+              value : $(elem).next().text()
+            });
           });
 
           // Fetch each td with content "pluviometria do dia"
           data.find('td:contains(pluviometria do dia)').each(function (i, elem) {
-            json[i].pluvD = {
-              desc : 'pluviometria do dia',
-              val : $(elem).next().text()
-            };
+            json[i].data.push({
+              key : 'pluviometria do dia',
+              value : $(elem).next().text()
+            });
           });
 
           // Fetch each td with content "pluviometria acumulada no mês"
           data.find('td:contains(pluviometria acumulada no mês)').each(function (i, elem) {
-            json[i].pluvM = {
-              desc : 'pluviometria acumulada no mês',
-              val : $(elem).next().text()
-            };
+            json[i].data.push({
+              key : 'pluviometria acumulada no mês',
+              value : $(elem).next().text()
+            });
           });
 
           // Fetch each td with content "média histórica do mês"
           data.find('td:contains(média histórica do mês)').each(function (i, elem) {
-            json[i].avg = {
-              desc : 'média histórica do mês',
-              val : $(elem).next().text()
-            };
+            json[i].data.push({
+              key : 'média histórica do mês',
+              value : $(elem).next().text()
+            });
           });
 
         });
