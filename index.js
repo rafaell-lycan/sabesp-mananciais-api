@@ -14,6 +14,12 @@
     });
   });
 
+  app.get('/:date', function (req, res) {
+    Sabesp.fetch(req.params.date).then(function(resolve, reject) {
+      res.json(resolve);
+    });
+  });
+
   app.listen(app.get('port'), function () {
     console.log('Magic happens on port: ' + app.get('port'));
   });
