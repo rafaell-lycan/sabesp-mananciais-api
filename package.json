@@ -1,6 +1,6 @@
 {
   "name": "sabesp-mananciais-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A simple scraping from sabesp website",
   "main": "index.js",
   "author": "Rafaell Lycan <sonny.webdsg@gmail.com>",
