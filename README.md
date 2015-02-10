@@ -1,5 +1,5 @@
 # Sabesp Mananciais API
-A simple scraping application to vizualize data about water in São Paulo.
+A simple scraping application to visualize data about water in São Paulo.
 
 [![Build Status](https://travis-ci.org/rafaell-lycan/sabesp-mananciais-api.svg?branch=master)](https://travis-ci.org/rafaell-lycan/sabesp-mananciais-api)
 [![node](https://img.shields.io/badge/node-0.10.x-brightgreen.svg)]()
@@ -26,4 +26,4 @@ Get data of today | GET | `/` | NULL
 Get data of a specific day | GET | `/:date` | YYYY-MM-DD
 
 #### OBS:
-Isn't possible get data before January 1th, 2003.
+It isn't possible get data before January 1th, 2003.
