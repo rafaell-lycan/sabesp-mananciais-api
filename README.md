@@ -13,6 +13,7 @@ A simple scraping application to visualize data about water in São Paulo.
 - Request 2.53.0
 - Cheerio 0.18.0
 - Promise 6.1.0
+- MongoDB 2.6.7
 
 
 #### Dev Dependencies:
