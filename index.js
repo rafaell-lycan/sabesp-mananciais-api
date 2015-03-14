@@ -2,6 +2,7 @@
   'use strict';
   var express = require('express'),
       app     = express(),
+      Promise = require('promise'),
       Mongo   = require('./lib/Mongo'),
       Helper  = require('./lib/Helper'),
       Sabesp  = require('./lib/Sabesp');
