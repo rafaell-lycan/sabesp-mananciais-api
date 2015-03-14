@@ -9,8 +9,10 @@ describe('Sabesp', function () {
       .set('Accept', 'application/json')
       .expect(200)
       .end(function(err, res) {
-        expect(res.body.length).to.be.equal(6);
-        expect(res.body[0].name).to.be.equal('Cantareira');
+        var json = res.body;
+
+        expect(json.dams.length).to.be.equal(6);
+        expect(json.dams[0].name).to.be.equal('Cantareira');
 
         done();
       });

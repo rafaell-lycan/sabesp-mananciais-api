@@ -7,8 +7,10 @@ describe('Helper', function () {
     Helper.dams = {
       'dummySystem' : 'Dummy'
     };
+    var name = Helper.getDamName('imagens/dummySystem.jpg');
 
-    expect(Helper.getDamName('imagens/dummySystem.jpg')).to.be.equal('Dummy');
+    expect(name).to.be.equal('dummySystem');
+    expect(Helper.dams[name]).to.be.equal('Dummy');
 
     Helper.dams = odd;
     done();
