@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node index.js",
     "pre-test": "./node_modules/jshint/bin/jshint *.js lib/*.js",
-    "test": "./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/mocha tests/*"
+    "test": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/*"
   },
   "engines": {
     "node": "0.10.x"
