@@ -1,5 +1,5 @@
 var request = require('supertest'),
-    app     = require('../index'),
+    app     = require('../../index'),
     expect  = require('chai').expect;
 
 describe('Sabesp', function () {

@@ -5,7 +5,14 @@
       Promise = require('promise'),
       Mongo   = require('./lib/Mongo'),
       Helper  = require('./lib/Helper'),
-      Sabesp  = require('./lib/Sabesp');
+      Sabesp  = require('./lib/Sabesp'),
+      token;
+
+  Sabesp.getToken()
+    .then(function(resolve) {
+      token = resolve;
+      done();
+    });
 
   // Heroku port settings
   app.set('port', (process.env.PORT || 8080));
@@ -17,7 +24,7 @@
         if (result) {
           resolve(result);
         } else {
-          Sabesp.fetch(date).then(function(data, err) {
+          Sabesp.fetch(date, token).then(function(data, err) {
             Mongo.insert('dams', data, function(err, result) {
               if (err) {
                 console.log(err);

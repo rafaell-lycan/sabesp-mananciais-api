@@ -13,7 +13,8 @@
   "scripts": {
     "start": "node index.js",
     "pre-test": "./node_modules/jshint/bin/jshint *.js lib/*.js",
-    "test": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/*"
+    "test": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/unit/*",
+    "test-api": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*"
   },
   "engines": {
     "node": "0.10.x"

@@ -1,8 +1,9 @@
 var expect  = require('chai').expect,
-    Helper  = require('../lib/Helper');
+    assert  = require('assert'),
+    Helper  = require('../../lib/Helper');
 
 describe('Helper', function () {
-  it('Translate image name from water system name', function(done) {
+  it('Translate image name from water system name', function() {
     var odd = Helper.dams;
     Helper.dams = {
       'dummySystem' : 'Dummy'
@@ -13,10 +14,9 @@ describe('Helper', function () {
     expect(Helper.dams[name]).to.be.equal('Dummy');
 
     Helper.dams = odd;
-    done();
   });
 
-  it("Expect the data be the same of mock", function(done) {
+  it("Expect the data be the same of mock", function() {
     var token = {
       state : 'xpto',
       validation : 'lorem'
@@ -32,6 +32,9 @@ describe('Helper', function () {
     };
 
     expect(Helper.buildData('2003-01-01', token)).to.eql(mock);
-    done();
+  });
+
+  it("#today returns today data on yyyy-mm-dd format", function() {
+    assert.ok(/\d{4}-\d{2}-\d{2}/.test(Helper.today()));
   });
 });
