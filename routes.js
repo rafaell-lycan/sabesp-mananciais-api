@@ -12,50 +12,29 @@ Sabesp.getToken()
     token = resolve;
   });
 
-router.get('/', function (req, res) {
-  _isCached(Helper.today())
-    .then(function(resolve) {
-      api.v0(resolve, res);
-    })
-    .catch(api.reject);
-});
-
-router.get('/v1', function (req, res) {
-  _isCached(Helper.today())
+router.get('/v1/:date?', function (req, res) {
+  var date = req.params.date || Helper.today();
+  _isCached(date)
     .then(function(resolve) {
       api.v1(resolve, res);
     })
     .catch(api.reject);
 });
 
-router.get('/v2', function (req, res) {
-  _isCached(Helper.today())
+router.get('/v2/:date?', function (req, res) {
+  var date = req.params.date || Helper.today();
+  _isCached(date)
     .then(function(resolve) {
       api.v2(resolve, res);
     })
     .catch(api.reject);
 });
 
-router.get('/:date', function (req, res) {
-  _isCached(req.params.date)
+router.get('/:date?', function (req, res) {
+  var date = req.params.date || Helper.today();
+  _isCached(date)
     .then(function(resolve) {
       api.v0(resolve, res);
-    })
-    .catch(api.reject);
-});
-
-router.get('/v1/:date', function (req, res) {
-  _isCached(req.params.date)
-    .then(function(resolve) {
-      api.v1(resolve, res);
-    })
-    .catch(api.reject);
-});
-
-router.get('/v2/:date', function (req, res) {
-  _isCached(req.params.date)
-    .then(function(resolve) {
-      api.v2(resolve, res);
     })
     .catch(api.reject);
 });
