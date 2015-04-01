@@ -11,7 +11,6 @@
   Sabesp.getToken()
     .then(function(resolve) {
       token = resolve;
-      done();
     });
 
   // Heroku port settings
@@ -41,9 +40,12 @@
   }
 
   app.get('/', function (req, res) {
-    isCached(Helper.today()).then(function(resolve, reject) {
+    isCached(Helper.today()).then(function(resolve) {
       res.json(resolve);
-    });
+    })
+    .catch(function(reject) {
+      console.log(reject);
+    })
   });
 
   app.get('/:date', function (req, res) {

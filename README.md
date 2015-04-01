@@ -20,9 +20,15 @@ A simple scraping application to visualize data about water in São Paulo.
 - Nodemon 1.3.6
 - JSHint 2.6.0
 - Mocha 2.1.0
-- Chai 1.10.0
 - Supertest 0.15.0
 - Istanbul 0.3.5
+
+
+#### Tests
+```
+$ npm test         # unit tests
+$ npm run test-api # integration tests (with database)
+```
 
 #### Route Schema:
 Description | Method | URL | Params

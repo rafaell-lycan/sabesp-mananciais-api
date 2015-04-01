@@ -1,5 +1,4 @@
-var expect  = require('chai').expect,
-    assert  = require('assert'),
+var assert  = require('assert'),
     Helper  = require('../../lib/Helper');
 
 describe('Helper', function () {
@@ -10,8 +9,8 @@ describe('Helper', function () {
     };
     var name = Helper.getDamName('imagens/dummySystem.jpg');
 
-    expect(name).to.be.equal('dummySystem');
-    expect(Helper.dams[name]).to.be.equal('Dummy');
+    assert.equal(name, 'dummySystem');
+    assert.equal(Helper.dams[name], 'Dummy');
 
     Helper.dams = odd;
   });
@@ -31,7 +30,7 @@ describe('Helper', function () {
       "cmbAno": 2003
     };
 
-    expect(Helper.buildData('2003-01-01', token)).to.eql(mock);
+    assert.deepEqual(Helper.buildData('2003-01-01', token), mock);
   });
 
   it("#today returns today data on yyyy-mm-dd format", function() {

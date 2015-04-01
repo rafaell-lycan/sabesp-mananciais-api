@@ -1,9 +1,9 @@
 var request = require('supertest'),
     app     = require('../../index'),
-    expect  = require('chai').expect;
+    assert  = require('assert');
 
 describe('Sabesp', function () {
-  it('returns today data', function(done) {
+  it('returns today data from databaseg', function(done) {
     request(app)
       .get('/')
       .set('Accept', 'application/json')
@@ -11,8 +11,8 @@ describe('Sabesp', function () {
       .end(function(err, res) {
         var json = res.body;
 
-        expect(json.dams.length).to.be.equal(6);
-        expect(json.dams[0].name).to.be.equal('Cantareira');
+        assert.equal(json.dams.length, 6);
+        assert.equal(json.dams[0].name, 'Cantareira');
 
         done();
       });
