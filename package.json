@@ -13,19 +13,21 @@
   "scripts": {
     "start": "node index.js",
     "pre-test": "./node_modules/jshint/bin/jshint *.js lib/*.js",
-    "test": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/*"
+    "test": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/unit/*",
+    "test-api": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*"
   },
   "engines": {
     "node": "0.10.x"
   },
   "dependencies": {
     "cheerio": "^0.18.0",
+    "config": "^1.12.0",
     "express": "^4.11.2",
+    "mongodb": "^1.4.34",
     "promise": "^6.1.0",
     "request": "^2.53.0"
   },
   "devDependencies": {
-    "chai": "^1.10.0",
     "istanbul": "^0.3.5",
     "jshint": "^2.6.0",
     "mocha": "^2.1.0",
