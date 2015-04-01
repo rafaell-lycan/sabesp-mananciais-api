@@ -75,6 +75,7 @@ Get data of a specific day | GET    | `/v2/:date` | YYYY-MM-DD
 ```
 
 ### v2
+@[wcastello](https://github.com/wcastello) suggestion:
 ```
 [
   {
