@@ -17,7 +17,7 @@
   app.set('port', (process.env.PORT || 8080));
   app.use(express.static(__dirname));
 
-  function isCached (date) {
+  function _isCached (date) {
     return new Promise(function(resolve, reject) {
       Mongo.findOne('dams', { date: date }, function(err, result) {
         if (result) {
@@ -39,19 +39,29 @@
     });
   }
 
+  function _handleReject(reject) {
+    console.log(reject);
+  }
+
   app.get('/', function (req, res) {
-    isCached(Helper.today()).then(function(resolve) {
+    _isCached(Helper.today()).then(function(resolve) {
+      res.json(resolve.dams || []);
+    })
+    .catch(_handleReject);
+  });
+
+  app.get('/dams', function (req, res) {
+    _isCached(Helper.today()).then(function(resolve) {
       res.json(resolve);
     })
-    .catch(function(reject) {
-      console.log(reject);
-    })
+    .catch(_handleReject);
   });
 
   app.get('/:date', function (req, res) {
-    isCached(req.params.date).then(function(resolve, reject) {
+    _isCached(req.params.date).then(function(resolve) {
       res.json(resolve);
-    });
+    })
+    .catch(_handleReject);
   });
 
   app.listen(app.get('port'), function () {
