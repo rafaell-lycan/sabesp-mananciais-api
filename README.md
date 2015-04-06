@@ -3,6 +3,7 @@ A simple scraping application to visualize data about water in São Paulo.
 
 [![Build Status](https://travis-ci.org/rafaell-lycan/sabesp-mananciais-api.svg?branch=master)](https://travis-ci.org/rafaell-lycan/sabesp-mananciais-api)
 [![node](https://img.shields.io/badge/node-0.10.x-brightgreen.svg)]()
+[![Code Climate](https://codeclimate.com/github/rafaell-lycan/sabesp-mananciais-api/badges/gpa.svg)](https://codeclimate.com/github/rafaell-lycan/sabesp-mananciais-api)
 [![GitHub release](https://img.shields.io/github/release/rafaell-lycan/sabesp-mananciais-api.svg)]()
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/rafaell-lycan/sabesp-mananciais-api/blob/master/LICENSE)
 
