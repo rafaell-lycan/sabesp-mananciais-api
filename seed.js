@@ -1,21 +1,21 @@
 'use strict';
-var moment = require('moment'),
-    http   = require('http'),
-    debug  = require('debug')('sabesp:seed'),
-    today  = moment(),
-    start  = moment('2003-01-01'),
-    next   = moment('2003-01-01').add(4, 'day');
+var moment  = require('moment'),
+    http    = require('http'),
+    debug   = require('debug')('sabesp:seed'),
+    today   = moment(),
+    request = require('request'),
+    start   = moment('2003-01-01'),
+    next    = moment('2003-01-01').add(30, 'day');
 
-debug('first crawler with:', start.toString(), next.toString());
 seedDatabase(start, next);
 
 setInterval(function() {
-  next = next.add(4, 'day');
-  debug('next crawler with:', start.toString(), next.toString());
+  next = next.add(30, 'day');
   seedDatabase(start, next);
-}, 60 * 1000);
+}, 3 * 1000);
 
 function seedDatabase (firstDay, lastDay) {
+  debug('next crawler with:', firstDay.toString(), lastDay.toString());
   var date = firstDay,
       i = 0;
 
@@ -27,9 +27,9 @@ function seedDatabase (firstDay, lastDay) {
 }
 
 function doRequest(url) {
-  http.get(url, function(res) {
-    debug("Got response: " + res.statusCode);
-  }).on('error', function(e) {
-    debug("Got error: " + e.message);
-  });
+  request(url, function (error, response, body) {
+    if (error) {
+      debug(error);
+    }
+  })
 }
