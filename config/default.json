@@ -1,9 +1,9 @@
 {
   "mongo": {
-    "server": "localhost",
-    "port": "27017",
+    "server": "dbh56.mongolab.com",
+    "port": "27567",
     "database": "sabesp",
-    "username": "",
-    "password": ""
+    "username": "sabesp",
+    "password": "123@mudar"
   }
 }
