@@ -2,7 +2,8 @@
   "mongo": {
     "server": "localhost",
     "port": "27017",
-    "database": "sabesp"
+    "database": "sabesp",
+    "username": "",
+    "password": ""
   }
 }
-
