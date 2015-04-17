@@ -4,8 +4,8 @@ var moment    = require('moment'),
     debug     = require('debug')('sabesp:seed'),
     yesterday = moment().subtract(1, 'day'),
     request   = require('request'),
-    start     = moment('2015-04-01'),
-    next      = moment('2015-04-01').add(30, 'day'),
+    start     = moment('2003-01-01'),
+    next      = moment('2003-01-01').add(30, 'day'),
     itv;
 
 seedDatabase(start, next);
