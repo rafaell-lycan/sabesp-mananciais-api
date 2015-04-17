@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   var express = require('express'),
+      debug   = require('debug')('sabesp:app'),
       app     = express();
 
   // Heroku port settings
@@ -18,7 +19,7 @@
   app.use('/', require('./routes'));
 
   app.listen(app.get('port'), function () {
-    console.log('Magic happens on port: ' + app.get('port'));
+    debug('Magic happens on port: ' + app.get('port'));
   });
 
   module.exports = app;

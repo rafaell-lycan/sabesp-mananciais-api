@@ -11,10 +11,12 @@
     "água"
   ],
   "scripts": {
+    "prestart": "export DEBUG=sabesp:*",
     "start": "node index.js",
     "pre-test": "./node_modules/jshint/bin/jshint *.js lib/*.js",
     "test": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/unit/*",
-    "test-api": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*"
+    "test-api": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*",
+    "seed": "export DEBUG=sabesp:* && node seed.js"
   },
   "engines": {
     "node": "0.10.x"
@@ -22,6 +24,7 @@
   "dependencies": {
     "cheerio": "^0.18.0",
     "config": "^1.12.0",
+    "debug": "^2.1.3",
     "express": "^4.11.2",
     "moment": "^2.10.2",
     "mongodb": "^1.4.34",

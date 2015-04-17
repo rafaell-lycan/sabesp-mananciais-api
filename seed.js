@@ -1,37 +1,35 @@
 'use strict';
 var moment = require('moment'),
-    Mongo   = require('./lib/Mongo'),
-    Sabesp  = require('./lib/Sabesp'),
-    date = moment('2014-01-01'),
-    today = moment().format('YYYY-MM-DD');
+    http   = require('http'),
+    debug  = require('debug')('sabesp:seed'),
+    today  = moment(),
+    start  = moment('2003-01-01'),
+    next   = moment('2003-01-01').add(4, 'day');
 
-Sabesp.getToken().then(seedDatabase);
+debug('first crawler with:', start.toString(), next.toString());
+seedDatabase(start, next);
 
-function seedDatabase (token) {
-  var i = 0;
-  while (date.format('YYYY-MM-DD') !== today) {
-    var currentDate = date.format('YYYY-MM-DD');
-    setTimeout(function() {
-      isCached(currentDate, token);
-    }, 2000 * i);
+setInterval(function() {
+  next = next.add(4, 'day');
+  debug('next crawler with:', start.toString(), next.toString());
+  seedDatabase(start, next);
+}, 60 * 1000);
 
+function seedDatabase (firstDay, lastDay) {
+  var date = firstDay,
+      i = 0;
+
+  while (date <= lastDay) {
+    var url = 'http://localhost:8080/' + date.format('YYYY-MM-DD');
+    doRequest(url);
     date = date.add(1, 'day');
-    i++;
   }
 }
 
-function isCached (date, token) {
-  Mongo.findOne('dams', { date: date }, function(err, result) {
-      if (!result) {
-        insertData(date, token);
-      }
-  });
-}
-
-function insertData (date, token) {
-  Sabesp.fetch(date, token).then(function(data) {
-    Mongo.insert('dams', data, function(err, result) {
-      console.log(err, result);
-    });
+function doRequest(url) {
+  http.get(url, function(res) {
+    debug("Got response: " + res.statusCode);
+  }).on('error', function(e) {
+    debug("Got error: " + e.message);
   });
 }
