@@ -37,6 +37,7 @@ router.get('/:date?', function (req, res) {
       api.v0(resolve, res);
     })
     .catch(api.reject);
+
 });
 
 function _isCached (date) {
@@ -46,14 +47,11 @@ function _isCached (date) {
         resolve(result);
       } else {
         Sabesp.fetch(date, token).then(function(data) {
-          Mongo.insert('dams', data, function(err, result) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log('Inserted on mongo ' + result);
-            }
-          });
-
+          if ((date !== '') && (date !== Helper.today())) {
+            Mongo.insert('dams', data, function(err, result) {
+              console.log(err, result);
+            });
+          }
           resolve(data);
         });
       }
