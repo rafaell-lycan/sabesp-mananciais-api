@@ -21,7 +21,6 @@
     console.log('Magic happens on port: ' + app.get('port'));
   });
 
-
   module.exports = app;
 
 })();
