@@ -1,6 +1,6 @@
 var express = require('express'),
     router  = express.Router(),
-    Promise = require('bluebird'),
+    Promise = require('promise'),
     debug   = require('debug')('sabesp:routes'),
     Mongo   = require('./lib/Mongo'),
     Helper  = require('./lib/Helper'),
@@ -13,31 +13,40 @@ Sabesp.getToken()
     token = resolve;
   });
 
-router.get('/v1/:date?', function (req, res, next) {
+router.get('/v1/:date?', function (req, res) {
   var date = req.params.date || Helper.today();
   _isCached(date)
     .then(function(resolve) {
       api.v1(resolve, res);
     })
-    .catch(next);
+    .catch(function(err) {
+      api.reject(err, res);
+    });
 });
 
-router.get('/v2/:date?', function (req, res, next) {
+router.get('/v2/:date?', function (req, res) {
   var date = req.params.date || Helper.today();
   _isCached(date)
     .then(function(resolve) {
       api.v2(resolve, res);
     })
-    .catch(next);
+    .catch(function(err) {
+      api.reject(err, res);
+    });
 });
 
-router.get('/:date?', function (req, res, next) {
+router.get('/:date?', function (req, res) {
   var date = req.params.date || Helper.today();
+  debug('date', date);
+
   _isCached(date)
     .then(function(resolve) {
       api.v0(resolve, res);
     })
-    .catch(next);
+    .catch(function(err) {
+      api.reject(err, res);
+    });
+
 });
 
 function _isCached (date) {
