@@ -5,7 +5,7 @@
       app     = express();
 
   // Heroku port settings
-  app.set('port', (process.env.port || 8080));
+  app.set('port', (process.env.PORT || 8080));
   app.use(express.static(__dirname));
   app.use(function(req, res, next){
     if (req.url === '/favicon.ico') {
