@@ -1,6 +1,5 @@
 'use strict';
 var moment    = require('moment'),
-    http      = require('http'),
     debug     = require('debug')('sabesp:seed'),
     yesterday = moment().subtract(1, 'day'),
     request   = require('request'),
