@@ -28,6 +28,7 @@
     "express": "^4.11.2",
     "moment": "^2.10.2",
     "mongojs": "^0.18.2",
+    "newrelic": "^1.18.3",
     "request": "^2.55.0"
   },
   "devDependencies": {
