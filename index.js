@@ -3,6 +3,8 @@ var express = require('express'),
     debug   = require('debug')('sabesp:app'),
     app     = express();
 
+require('newrelic');
+
 // Heroku port settings
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(__dirname));
