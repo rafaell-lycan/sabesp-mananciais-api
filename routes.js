@@ -33,7 +33,7 @@ router.get('/v2/:date?', function (req, res, next) {
 });
 
 router.get('/:date?', function (req, res, next) {
-  if (!(req.params.date === '' && /\d{4}-\d{2}\d{2}$/.test(req.params.date))) {
+  if (!(req.params.date === undefined && /\d{4}-\d{2}\d{2}$/.test(req.params.date))) {
     return next();
   }
   var date = req.params.date || Helper.today();
