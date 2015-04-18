@@ -4,7 +4,6 @@
  * See lib/config.defaults.js in the agent distribution for a more complete
  * description of configuration variables and their potential values.
  */
- //mongo dbh56.mongolab.com:27567/sabesp -u sabesp -p sabesp
 exports.config = {
   /**
    * Array of application names.

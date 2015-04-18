@@ -33,12 +33,19 @@ router.get('/v2/:date?', function (req, res, next) {
 });
 
 router.get('/:date?', function (req, res, next) {
+  if (!(req.params.date === '' && /\d{4}-\d{2}\d{2}$/.test(req.params.date))) {
+    return next();
+  }
   var date = req.params.date || Helper.today();
   _isCached(date)
     .then(function(resolve) {
       api.v0(resolve, res);
     })
     .catch(next);
+});
+
+router.get('/loaderio-deb75e3581d893735fd6e5050757bdb2', function (req, res, next) {
+  res.send('loaderio-deb75e3581d893735fd6e5050757bdb2');
 });
 
 function _isCached (date) {
