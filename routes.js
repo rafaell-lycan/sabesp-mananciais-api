@@ -2,6 +2,7 @@ var express = require('express'),
     router  = express.Router(),
     Promise = require('bluebird'),
     debug   = require('debug')('sabesp:routes'),
+    moment  = require('moment'),
     Mongo   = require('./lib/Mongo'),
     Helper  = require('./lib/Helper'),
     Sabesp  = require('./lib/Sabesp'),
@@ -46,13 +47,13 @@ function _isCached (date) {
       if (result) {
         resolve(result);
       } else {
-        Sabesp.fetch(date, token).then(function(data) {
-          if ((date !== '') && (data.date !== '') && (date !== Helper.today())) {
-            Mongo.insert('dams', data, function(err, result) {
+        Sabesp.fetch(date, token).then(function(result) {
+          if (_isValidDate(result, date)) {
+            Mongo.insert('dams', result, function(err, result) {
               if (err) { debug('err', err); }
             });
           }
-          resolve(data);
+          resolve(result);
         })
         .catch(function(err) {
           reject(err);
@@ -60,6 +61,10 @@ function _isCached (date) {
       }
     });
   });
+}
+
+function _isValidDate(result, date) {
+  return (date !== '') && (moment(date) < moment(Helper.today())) && (result.date !== '');
 }
 
 module.exports = router;
