@@ -33,7 +33,7 @@ router.get('/v2/:date?', function (req, res, next) {
 });
 
 router.get('/:date?', function (req, res, next) {
-  var isValidDateParam = req.params.date !== undefined && !/\d{4}-\d{2}\d{2}$/.test(req.params.date);
+  var isValidDateParam = req.params.date !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(req.params.date);
   if (isValidDateParam) {
     return next();
   }
