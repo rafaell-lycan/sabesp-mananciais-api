@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express'),
+    cors    = require('cors'),
     debug   = require('debug')('sabesp:app'),
     app     = express();
 
@@ -7,6 +8,8 @@ require('newrelic');
 
 // Heroku port settings
 app.set('port', (process.env.PORT || 8080));
+
+app.use(cors());
 app.use(express.static(__dirname));
 app.use(function(req, res, next){
   if (req.url === '/favicon.ico') {
