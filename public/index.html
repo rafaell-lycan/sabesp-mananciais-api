@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sabesp API</title>
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/normaset.css">
+  <link rel="stylesheet" href="/css/api.css">
+</head>
+<body>
+<header id="header">
+  <div class="content">
+    <h1 id="header-title">Sabesp API</h1>
+  </div>
+</header><!-- #header -->
+
+<article id="content" class="content">
+  <ul id="apis">
+    <li class="api-item">
+      <h2 class="api-item-title">Sabesp API: Retrieve Sabesp's data</h2>
+
+      <ul class="endpoints">
+        <li class="endpoint-item noun-get">
+          <div class="endpoint-heading">
+            <span class="noun fleft">GET</span>
+            <a href="/ws/mixed" target="_blank" class="endpoint-name fleft">/ws/mixed</a>
+          </div>
+          <div class="endpoint-content">
+            <h3>Parameters</h3>
+            <p>None</p>
+
+            <h3>Response Body</h3>
+    <pre>
+    [
+
+        34419,
+        126416,
+        126417,
+        126418,
+        126427
+
+    ]</pre>
+          </div><!-- .endpoint-content -->
+        </li>
+
+        <li class="endpoint-item noun-post">
+          <div class="endpoint-heading">
+            <span class="noun fleft">POST</span>
+            <a href="/ws/mixed" target="_blank" class="endpoint-name fleft">/ws/mixed</a>
+          </div>
+          <div class="endpoint-content">
+            <h3>Parameters</h3>
+            <p>None</p>
+
+            <h3>Response Body</h3>
+    <pre>
+    [
+        {
+            "status": "ok"
+        }
+    ]</pre>
+          </div><!-- .endpoint-content -->
+        </li>
+        <li class="endpoint-item noun-put">
+          <div class="endpoint-heading">
+            <span class="noun fleft">PUT</span>
+            <span class="endpoint-name fleft">/ws/cutting-time-rule/:_id</span>
+          </div>
+          <div class="endpoint-content">
+     <h3>Parameters</h3>
+    <pre>
+    {
+        "deliveryTypeId": Number,
+        "dcId": Number,
+        "carrier": String,
+        "cuttingTime": String,
+        "timeDc": Number,
+        "is_active": Boolean,
+        "tags": [String]
+    }
+    </pre>
+
+            <h3>Response Body</h3>
+    <pre>
+    [
+      1,
+      {
+        "ok":true,
+        "n":1,
+        "updatedExisting":true
+      }
+    ]
+    </pre>
+          </div><!-- .endpoint-content -->
+        </li>
+
+        <li class="endpoint-item noun-delete">
+          <div class="endpoint-heading">
+            <span class="noun fleft">DELETE</span>
+            <span class="endpoint-name fleft">/ws/cutting-time-rule/:_id</span>
+          </div>
+          <div class="endpoint-content">
+     <h3>Parameters</h3>
+            <p>ID</p>
+
+            <h3>Response Body</h3>
+    <pre>
+    [
+      1,
+      {
+        "ok":true,
+        "n":1
+      }
+    ]
+    </pre>
+          </div><!-- .endpoint-content -->
+        </li>
+
+
+      </ul><!-- .endpoints -->
+    </li><!-- .api-item -->
+  </ul><!-- #apis -->
+
+</article><!-- #content -->
+
+</body>
+</html>

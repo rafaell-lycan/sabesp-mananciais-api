@@ -10,7 +10,7 @@ require('newrelic');
 app.set('port', (process.env.PORT || 8080));
 
 app.use(cors());
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public'));
 app.use(function(req, res, next){
   if (req.url === '/favicon.ico') {
     res.writeHead(200, {'Content-Type': 'image/x-icon'} );
