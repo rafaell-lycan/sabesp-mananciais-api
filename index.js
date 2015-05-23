@@ -4,11 +4,8 @@ require('newrelic'); // Don't move from here if your use New Relic APM
 var express = require('express'),
     cors    = require('cors'),
     debug   = require('debug')('sabesp:app'),
-    app     = express(),
-    config  = require('config'),
-    ua      = require('universal-analytics');
-
-var visitor = ua(process.env.ANALYTICS || config.get('analytics'));
+    ga      = require('./middleware/analytics'),
+    app     = express();
 
 app.set('port', (process.env.PORT || 8080));
 
@@ -23,13 +20,8 @@ app.use(function (req, res, next) {
   }
 });
 
-app.use(function (req, res, next) {
-  debug(req.path);
-  visitor.pageview(req.path).send();
-  visitor.event('API', 'Fetch Data', req.path).send();
-  next();
-});
-app.use('/', require('./routes'));
+app.use(ga.track);
+app.use('/', require('./middleware/routes'));
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
