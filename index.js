@@ -1,12 +1,11 @@
 'use strict';
+require('newrelic'); // Don't move from here if your use New Relic APM
+
 var express = require('express'),
     cors    = require('cors'),
     debug   = require('debug')('sabesp:app'),
     app     = express();
 
-require('newrelic');
-
-// Heroku port settings
 app.set('port', (process.env.PORT || 8080));
 
 app.use(cors());

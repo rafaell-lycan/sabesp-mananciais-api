@@ -30,7 +30,8 @@
     "moment": "^2.10.2",
     "mongojs": "^0.18.2",
     "newrelic": "^1.18.3",
-    "request": "^2.55.0"
+    "request": "^2.55.0",
+    "universal-analytics": "^0.3.8"
   },
   "devDependencies": {
     "istanbul": "^0.3.5",
