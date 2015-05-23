@@ -5,7 +5,7 @@ var moment    = require('moment'),
     request   = require('request');
 
 debug('Job: Seed yesterday');
-var url = 'http://localhost:8080/' + yesterday.format('YYYY-MM-DD');
+var url = 'https://sabesp-api.herokuapp.com/' + yesterday.format('YYYY-MM-DD');
 doRequest(url);
 
 function doRequest(url) {
