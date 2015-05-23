@@ -18,7 +18,7 @@
     "seed": "export DEBUG=sabesp:* && node seed.js"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.12.3"
   },
   "dependencies": {
     "bluebird": "^2.9.24",
