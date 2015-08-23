@@ -5,6 +5,7 @@ var express = require('express'),
     cors    = require('cors'),
     debug   = require('debug')('sabesp:app'),
     ga      = require('./middleware/analytics'),
+    Helper  = require('./lib/Helper'),
     app     = express();
 
 app.set('port', (process.env.PORT || 8080));
@@ -21,6 +22,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(ga.track);
+
 app.use('/', require('./middleware/routes'));
 
 app.use(function (req, res, next) {
@@ -31,7 +33,7 @@ app.use(function (req, res, next) {
 
 app.use(function (err, req, res, next) {
   debug(err);
-  res.status(err.status || 500).json({ err: err.message });
+  res.status(err.statusCode || 500).json({ err: err.message });
 });
 
 app.listen(app.get('port'), function () {
