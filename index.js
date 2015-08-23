@@ -1,5 +1,4 @@
 'use strict';
-require('newrelic'); // Don't move from here if your use New Relic APM
 
 var express = require('express'),
     cors    = require('cors'),
