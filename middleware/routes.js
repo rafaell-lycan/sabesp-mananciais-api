@@ -14,6 +14,18 @@ Sabesp.getToken()
     token = resolve;
   });
 
+
+router.use(function(request, response, next) {
+  var date = request.url.replace('/', '');
+  if (!date || Helper._isValidDateFormat(date)) {
+    return next();
+  }
+
+  var err = new Error('Invalid date format');
+  err.statusCode = 400;
+  next(err);
+});
+
 router.get('/v1/:date?', function (req, res, next) {
   var date = req.params.date || Helper.today();
   _isCached(date)
@@ -33,8 +45,8 @@ router.get('/v2/:date?', function (req, res, next) {
 });
 
 router.get('/:date?', function (req, res, next) {
-  var isValidDateParam = req.params.date !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(req.params.date);
-  if (isValidDateParam) {
+  var isNotValidDate = req.params.date !== undefined && !Helper._isValidDateFormat(req.params.date);
+  if (isNotValidDate) {
     return next();
   }
   var date = req.params.date || Helper.today();
@@ -56,7 +68,7 @@ function _isCached (date) {
         resolve(result);
       } else {
         Sabesp.fetch(date, token).then(function(result) {
-          if (_isValidDate(result, date)) {
+          if (_isAcceptableDate(result, date)) {
             Mongo.insert('dams', result, function(err, result) {
               if (err) { debug('err', err); }
             });
@@ -71,7 +83,7 @@ function _isCached (date) {
   });
 }
 
-function _isValidDate(result, date) {
+function _isAcceptableDate(result, date) {
   return (date !== '') && (moment(date) < moment(Helper.today())) && (result.date !== '');
 }
 
