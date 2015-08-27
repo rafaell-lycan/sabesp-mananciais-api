@@ -7,7 +7,6 @@ describe('Errors', function () {
   it('not found', function(done) {
     request(app)
     .get('/notFound')
-      .expect(200)
       .end(function(err, res) {
 
         assert.equal(404, res.statusCode);
