@@ -1,8 +1,13 @@
 var request = require('supertest'),
     app     = require('../../index'),
+    debug   = require('debug')('sabesp:test'),
     assert  = require('assert');
 
 describe('Routes', function () {
+  before(function(done) {
+    setTimeout(done, 1000);
+  });
+
   describe('v0', function(){
     it('returns today data from database', function(done) {
       request(app)
