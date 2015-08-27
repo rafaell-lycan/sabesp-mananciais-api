@@ -16,8 +16,9 @@ Sabesp.getToken()
 
 
 router.use(function(request, response, next) {
-  var date = request.url.replace('/', '');
-  if (!date || Helper._isValidDateFormat(date)) {
+  var date = request.url.replace(/(.*)(\d{4}-\d{2}-\d{2})/, '$2');
+
+  if (!date || Helper._isValidDateFormat(date) || /(\/v2|\/v1)?\//.test(date)) {
     return next();
   }
 
