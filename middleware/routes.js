@@ -64,13 +64,13 @@ router.get('/loaderio-deb75e3581d893735fd6e5050757bdb2', function (req, res, nex
 
 function _isCached (date) {
   return new Promise(function(resolve, reject) {
-    Mongo.findOne('dams', { date: date }, function(err, result) {
+    Mongo.collection('dams').findOne({ date: date }, function(err, result) {
       if (result) {
         resolve(result);
       } else {
         Sabesp.fetch(date, token).then(function(result) {
           if (_isAcceptableDate(result, date)) {
-            Mongo.insert('dams', result, function(err, result) {
+            Mongo.collection('dams').insert(result, function(err, result) {
               if (err) { debug('err', err); }
             });
           }
@@ -85,6 +85,7 @@ function _isCached (date) {
 }
 
 function _isAcceptableDate(result, date) {
+  debug(date, moment(date).toString(), moment(Helper.today()).toString());
   return (date !== '') && (moment(date) < moment(Helper.today())) && (result.date !== '');
 }
 

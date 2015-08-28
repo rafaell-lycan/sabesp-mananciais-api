@@ -13,8 +13,9 @@
   "scripts": {
     "start": "export DEBUG=sabesp:* && node index.js",
     "pre-test": "./node_modules/jshint/bin/jshint *.js lib/*.js",
-    "test": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/unit/*",
-    "test-api": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*",
+    "test": "npm run test-node && npm run test-api",
+    "test-node": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/unit/*",
+    "test-api": "export DEBUG=sabesp:* && node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*",
     "seed": "export DEBUG=sabesp:* && node seed.js"
   },
   "engines": {
