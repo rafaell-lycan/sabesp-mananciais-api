@@ -1,0 +1,78 @@
+swagger: '2.0'
+info:
+  version: '2.0.0'
+  title: Swagger Sabesp (Simple)
+  description: A sample API that uses a Sabesp dams system as an example to demonstrate features in the swagger-2.0 specification
+  contact:
+    name: Swagger API team
+    email: foo@example.com
+    url: http://swagger.io
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+host: sabesp-api.herokuapp.com
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /{date}:
+    get:
+      description: Return all dams from the day
+      operationId: getAll
+      produces:
+        - application/json
+      parameters:
+        - name: date
+          type: string
+          in: path
+          description: A dete format (YYYY-MM-DD) that retuns dams info
+          required: true
+      responses:
+        '200':
+          description: dams response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/v1'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/error'
+definitions:
+  v1:
+    type: object
+    required:
+      - name
+      - data
+    properties:
+      name:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/dams-v1'
+  dams-v1:
+    type: object
+    required:
+      - key
+      - value
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+  error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
