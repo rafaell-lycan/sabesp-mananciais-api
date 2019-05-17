@@ -20,9 +20,26 @@ consumes:
 produces:
   - application/json
 paths:
+  /:
+    get:
+      description: Return all dams from today
+      operationId: getAll
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: dams response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/v1'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/error'
   /{date}:
     get:
-      description: Return all dams from the day
+      description: Return all dams from the day YYYY-MM-DD
       operationId: getAll
       produces:
         - application/json
@@ -43,6 +60,46 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/error'
+  /v2/:
+    get:
+      description: Return all dams from today
+      operationId: getAll
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: dams response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/v2'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  /v2/{date}:
+    get:
+      description: Return all dams from the day YYYY-MM-DD
+      operationId: getAll
+      produces:
+        - application/json
+      parameters:
+        - name: date
+          type: string
+          in: path
+          description: A dete format (YYYY-MM-DD) that retuns dams info
+          required: true
+      responses:
+        '200':
+          description: dams response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/v2'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/error'
 definitions:
   v1:
     type: object
@@ -56,6 +113,18 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/dams-v1'
+  v2:
+    type: object
+    required:
+      - name
+      - data
+    properties:
+      name:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/dams-v2'
   dams-v1:
     type: object
     required:
@@ -65,6 +134,22 @@ definitions:
       key:
         type: string
       value:
+        type: string
+  dams-v2:
+    type: object
+    required:
+      - volume_armazenado
+      - pluviometria_do_dia
+      - pluviometria_acumulada_no_mes
+      - media_historica_do_mes
+    properties:
+      volume_armazenado:
+        type: string
+      pluviometria_do_dia:
+        type: string
+      pluviometria_acumulada_no_mes:
+        type: string
+      media_historica_do_mes:
         type: string
   error:
     type: object
