@@ -37,12 +37,12 @@ $ npm run test-api # integration tests (with database)
 ```
 
 ## Route Schema:
-Description                | Method | URL         | Params
----------------------------| ------ | ----------- | ---------
-Get data of today          | GET    | `/`         | NULL
-Get data of a specific day | GET    | `/:date`    | YYYY-MM-DD
-Get data of today          | GET    | `/v2`       | NULL
-Get data of a specific day | GET    | `/v2/:date` | YYYY-MM-DD
+| Description                | Method | URL         | Params     |
+| -------------------------- | ------ | ----------- | ---------- |
+| Get data of today          | GET    | `/`         | NULL       |
+| Get data of a specific day | GET    | `/:date`    | YYYY-MM-DD |
+| Get data of today          | GET    | `/v2`       | NULL       |
+| Get data of a specific day | GET    | `/v2/:date` | YYYY-MM-DD |
 
 ## v0
 ```
@@ -80,9 +80,20 @@ Get data of a specific day | GET    | `/v2/:date` | YYYY-MM-DD
 
 Sabesp API was made with love and a lot of JavaScript by these guys:
 
-[![Rafaell Lycan](https://avatars2.githubusercontent.com/u/1516450?v=3&s=70)](http://rafaell-lycan.github.io) | [![William Bruno](https://avatars2.githubusercontent.com/u/1443932?v=3&s=70)](http://wbruno.com.br)
---- | --- |
-[Rafaell Lycan](http://rafaell-lycan.github.io) | [William Bruno](http://wbruno.com.br)
+| [![Rafaell Lycan](https://avatars2.githubusercontent.com/u/1516450?v=3&s=70)](http://rafaell-lycan.github.io) | [![William Bruno](https://avatars2.githubusercontent.com/u/1443932?v=3&s=70)](http://wbruno.com.br) |
+| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| [Rafaell Lycan](http://rafaell-lycan.github.io)                                                               | [William Bruno](http://wbruno.com.br)                                                               |
 
 ## OBS:
 It isn't possible get data before January 1th, 2003.
+
+https://github.com/ro6ley/TwitterClone/blob/master/server/server.js
+https://github.com/tthverst/pokedex-api
+https://github.com/Thamasky/webapp-pokewars/edit/master/package.json
+https://github.com/tuatarapl/polish-api-aspsp-mock/tree/develop/src
+https://github.com/webhintio/online-service
+https://github.com/shingoinstitute/shingo-auth-api
+https://github.com/alv-ch/jr-monitor/tree/master/backend
+https://github.com/siro47/CornerCleanArchitectureNode/tree/master
+https://github.com/swimlane/node-microservice-demo
+https://github.com/goldenstar999/booking_app_based_on_react_django_restful/tree/master/backend
