@@ -1,65 +1,78 @@
 import cors from 'cors';
-import express, { Express } from 'express';
-import * as fs from 'fs';
+import express, { Application } from 'express';
 import helmet = require('helmet');
 import * as http from 'http';
-import * as jsyaml from 'js-yaml';
-import swaggerTools from 'swagger-tools';
+import { MongoClient, MongoClientOptions } from 'mongodb';
+import { env } from 'process';
 
-export class Application {
-  private app: Express;
+import Analytics from './common/middleware/analytics';
+import { errorHandler, notFoundHandler } from './common/middleware/handlers';
+import swagger from './common/middleware/swagger';
+import Logger from './common/utils/logger';
+import routes from './routes';
+
+const logger = Logger('app');
+
+export default class Server {
+  private static app: Application;
 
   constructor() {
-    this.app = express();
-
-    this.setup();
+    Server.app = express();
+    this.setup(Server.app);
   }
 
-  private setup(): void {
-    this.middleware();
-    this.setupSwagger();
-    this.routes();
+  public get app(): Application {
+    return Server.app;
+  }
+
+  private setup(app: Application): void {
+    this.database(app);
+    this.middleware(app);
+    this.routes(app);
+  }
+
+  private async database(app: Application): Promise<void> {
+    if (env.MONGO_URI) {
+      logger('Adding MongoDB configuration...');
+      const dbOptions: MongoClientOptions = { useNewUrlParser: true };
+      const db: MongoClient = await MongoClient.connect(env.MONGO_URI, dbOptions);
+      app.set('db', db);
+    }
   }
 
   // Configure Express middleware.
-  private middleware(): void {
+  private middleware(app: Application): void {
+    logger('Applying middlewares...');
+
     // enable helmet
-    this.app.use(helmet());
+    app.use(helmet());
+
     // enable cors
-    this.app.use(cors({ maxAge: 600 }));
-  }
+    app.use(cors({ maxAge: 600 }));
 
-  private setupSwagger(): void {
-    const file = fs.readFileSync(`${process.cwd()}/swagger/swagger.yml`, 'utf8');
-    const swaggerFile = jsyaml.load(file.toString());
+    // enable swagger
+    swagger(app);
 
-    swaggerTools.initializeMiddleware(
-      swaggerFile,
-      ({ swaggerMetadata, swaggerValidator, swaggerRouter, swaggerUi }) => {
-        // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
-        this.app.use(swaggerMetadata());
-
-        // Validate Swagger requests
-        this.app.use(swaggerValidator());
-
-        // Route validated requests to appropriate controller
-        this.app.use(swaggerRouter());
-
-        // Serve the Swagger documents and Swagger UI
-        this.app.use(swaggerUi());
-      }
-    );
+    // enable Analytics
+    if (env.ANALYTICS) {
+      app.use(new Analytics(env.ANALYTICS).track);
+    }
   }
 
   // Configure routes
-  private routes(): void {
-    // load routes
+  private routes(app: Application): void {
+    routes(app);
+
+    // Add application error handlers
+    // app.use(notFoundHandler);
+    // app.use(errorHandler);
   }
 
-  public start(port: number | string = 3000): void {
-    http.createServer(this.app).listen(port, () => {
-      // tslint:disable-next-line: no-console
-      console.log(`
+  public start(): void {
+    const port: string | number = env.PORT || 3000;
+
+    http.createServer(Server.app).listen(port, () => {
+      logger(`
         Your server is running on http://localhost:${port}
         Swagger-ui is available on http://localhost:${port}/docs
       `);
