@@ -1,9 +1,44 @@
-export class Dam {
-  private name: string;
-  private savedLifes: number;
+/**
+ * Dam names avaiable
+ */
+export enum DamName {
+  cantareira = 'Cantareira',
+  altoTiete = 'Alto Tietê',
+  guarapiranga = 'Guarapiranga',
+  cotia = 'Cotia',
+  rioGrande = 'Rio Grande',
+  rioClaro = 'Rio Claro',
+  saoLourenco = 'São Lourenço',
+}
 
-  constructor(name: string, savedLifes: number) {
+/**
+ * Pluviometry is a measure based on millimeters (mm)
+ */
+export interface Pluviometry {
+  /**
+   * Daily pluviometry
+   */
+  day: string | number;
+  /**
+   * Monthly pluviometry
+   */
+  month: string | number;
+  /**
+   * Monthly average pluviometry
+   */
+  average: string | number;
+}
+
+export class Dam {
+  public name: DamName;
+  public volume: string;
+  public variation: string;
+  public pluviometry: Pluviometry;
+
+  constructor(name: DamName, volume: string, variation: string, pluviometry: Pluviometry) {
     this.name = name;
-    this.savedLifes = savedLifes;
+    this.volume = volume;
+    this.variation = variation;
+    this.pluviometry = pluviometry;
   }
 }
