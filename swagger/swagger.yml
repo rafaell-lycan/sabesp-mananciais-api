@@ -23,7 +23,6 @@ paths:
   /:
     get:
       description: Return all dams from today
-      operationId: getAll
       produces:
         - application/json
       responses:
@@ -40,7 +39,6 @@ paths:
   /{date}:
     get:
       description: Return all dams from the day YYYY-MM-DD
-      operationId: getAll
       produces:
         - application/json
       parameters:
@@ -63,7 +61,6 @@ paths:
   /v2/:
     get:
       description: Return all dams from today
-      operationId: getAll
       produces:
         - application/json
       responses:
@@ -80,7 +77,6 @@ paths:
   /v2/{date}:
     get:
       description: Return all dams from the day YYYY-MM-DD
-      operationId: getAll
       produces:
         - application/json
       parameters:
