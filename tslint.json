@@ -5,6 +5,7 @@
   ],
   "jsRules": {},
   "rules": {
+    "interface-name": false,
     "trailing-comma": [true, {
       "multiline": "always",
       "singleline": "never"
@@ -12,7 +13,7 @@
     "quotemark": [true, "single"],
     "indent": [true, "spaces", 2],
     "object-literal-sort-keys": false,
-    "member-ordering": false
-  },
-  "rulesDirectory": []
+    "member-ordering": true,
+    "ordered-imports": false
+  }
 }
