@@ -29,16 +29,9 @@ export interface Pluviometry {
   average: string | number;
 }
 
-export class Dam {
-  public name: DamName;
-  public volume: string;
-  public variation: string;
-  public pluviometry: Pluviometry;
-
-  constructor(name: DamName, volume: string, variation: string, pluviometry: Pluviometry) {
-    this.name = name;
-    this.volume = volume;
-    this.variation = variation;
-    this.pluviometry = pluviometry;
-  }
+export interface Dam {
+  name: DamName;
+  volume: string;
+  variation: string;
+  pluviometry: Pluviometry;
 }
