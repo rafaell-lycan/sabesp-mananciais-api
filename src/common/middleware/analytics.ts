@@ -1,23 +1,28 @@
-import { NextFunction, Request, Response } from 'express';
+import { env } from 'process';
+import { Request, Response, NextFunction } from 'express';
+import { Middleware, ExpressMiddlewareInterface } from 'routing-controllers';
 import ua, { PageviewParams, Visitor } from 'universal-analytics';
 
-export default class Analytics {
-  private visitor: Visitor;
+import logger from '../utils/logger';
 
-  constructor(id: string) {
-    this.visitor = ua(id);
-  }
-
-  public track(req: Request, res: Response, next: NextFunction): void {
+@Middleware({ type: 'after' })
+export default class Analytics implements ExpressMiddlewareInterface {
+  public use(req: Request, res: Response, next: NextFunction) {
     const { headers, path } = req;
-    const options: PageviewParams = {
-      dp: path,
-      dh: headers.host,
-      uip: headers['x-forwarded-for'] || headers['x-real-ip'],
-      ua: headers['user-agent'],
-    };
+    logger.info(`Analytics pageview on ${path}`);
+    if (env.ANALYTICS) {
+      const visitor: Visitor = ua(env.ANALYTICS);
+      const options: PageviewParams = {
+        dp: path,
+        dh: headers.host,
+        uip: headers['x-forwarded-for'] || headers['x-real-ip'],
+        ua: headers['user-agent'],
+      };
 
-    this.visitor.pageview(options).send();
+      logger.info(`Analytics pageview on ${path}`);
+      visitor.pageview(options).send(() => next());
+    }
+
     next();
   }
 }
