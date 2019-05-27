@@ -17,14 +17,14 @@
     "prod": "yarn build && node build/server.js",
     "format": "tslint 'src/**/*.ts' --fix",
     "lint": "tslint 'src/**/*.ts'",
-    "start:new": "node build",
-    "generate-data": "node build/generator ?seed?",
-    "start": "export DEBUG=sabesp:* && node index.js",
+    "start:v2": "node build",
+    "start": "yarn prod",
     "pre-test": "./node_modules/jshint/bin/jshint *.js lib/*.js",
     "test:new": "nyc mocha test/**/*.{ts,tsx}",
     "test": "npm run test-node && npm run test-api",
     "test-node": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/unit/*",
     "test-api": "export DEBUG=sabesp:* && node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*",
+    "generate-data": "node build/generator ?seed?",
     "seed": "export DEBUG=sabesp:* && node seed.js"
   },
   "nyc": {

@@ -5,7 +5,7 @@ import { Middleware, ExpressMiddlewareInterface, NotFoundError } from 'routing-c
 export default class NotFoundHandler implements ExpressMiddlewareInterface {
   public use(req: Request, res: Response, next: NextFunction) {
     const { name, message, httpCode } = new NotFoundError(
-      `Resource '${req.originalUrl}' not found.`
+      `Resource '${req.originalUrl}' not found.`,
     );
 
     res.status(httpCode).send({
