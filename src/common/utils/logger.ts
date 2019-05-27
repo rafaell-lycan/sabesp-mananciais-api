@@ -2,7 +2,6 @@ import { env, mainModule } from 'process';
 import { join, basename } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 import { Logger, createLogger, LoggerOptions, format, transports } from 'winston';
-import { TransformableInfo } from 'logform';
 
 const logDir = 'logs';
 const filename = join(logDir, 'app.log');
@@ -12,8 +11,7 @@ if (!existsSync(logDir)) {
   mkdirSync(logDir);
 }
 
-const outputFormat = (info: TransformableInfo) =>
-  `${info.timestamp} ${info.level}: ${info.message}`;
+const outputFormat = (info: any) => `${info.timestamp} ${info.level}: ${info.message}`;
 
 const options: LoggerOptions = {
   level,
