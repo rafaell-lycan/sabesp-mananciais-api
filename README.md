@@ -87,13 +87,11 @@ Sabesp API was made with love and a lot of JavaScript by these guys:
 ## OBS:
 It isn't possible get data before January 1th, 2003.
 
-https://github.com/ro6ley/TwitterClone/blob/master/server/server.js
-https://github.com/tthverst/pokedex-api
-https://github.com/Thamasky/webapp-pokewars/edit/master/package.json
-https://github.com/tuatarapl/polish-api-aspsp-mock/tree/develop/src
-https://github.com/webhintio/online-service
-https://github.com/shingoinstitute/shingo-auth-api
-https://github.com/alv-ch/jr-monitor/tree/master/backend
-https://github.com/siro47/CornerCleanArchitectureNode/tree/master
-https://github.com/swimlane/node-microservice-demo
-https://github.com/goldenstar999/booking_app_based_on_react_django_restful/tree/master/backend
+## TODO:
+
+[x] Fix crawler bug by using Sabesp official API.
+[x] Change project to typescript
+[x] Add Swagger
+[ ] Change Unit Tests
+[ ] Cache information on Redis
+[ ] Update readme
