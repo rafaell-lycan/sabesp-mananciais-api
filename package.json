@@ -20,7 +20,8 @@
     "start:v2": "node build",
     "start": "yarn prod",
     "pre-test": "./node_modules/jshint/bin/jshint *.js lib/*.js",
-    "test:new": "nyc mocha test/**/*.{ts,tsx}",
+    "test:new": "nyc mocha test/**/*.spec.ts",
+    "test:watch": "nodemon --exec yarn test:new",
     "test": "npm run test-node && npm run test-api",
     "test-node": "node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/unit/*",
     "test-api": "export DEBUG=sabesp:* && node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha tests/api/*",
@@ -80,6 +81,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
     "@types/cheerio": "^0.22.11",
     "@types/cors": "^2.8.5",
     "@types/date-fns": "^2.6.0",
@@ -97,6 +99,7 @@
     "@types/reflect-metadata": "^0.1.0",
     "@types/request": "^2.48.1",
     "@types/serve-favicon": "^2.2.30",
+    "@types/supertest": "^2.0.7",
     "@types/swagger-tools": "^0.10.6",
     "@types/swagger-ui-express": "^3.0.0",
     "@types/universal-analytics": "^0.4.2",
