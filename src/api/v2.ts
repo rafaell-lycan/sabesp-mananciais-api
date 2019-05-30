@@ -1,8 +1,9 @@
-import { Controller, Get, Param } from 'routing-controllers';
+import { Controller, Get, Param, InternalServerError } from 'routing-controllers';
 import { validateDate, formatDate } from '../common/utils/dateUtils';
 import { SabespResponse } from '../services/Sabesp';
 import Sabesp from '../services/Sabesp';
 import Mapper from '../services/Mapper';
+import logger from '../common/utils/logger';
 
 @Controller('/v2')
 export default class ApiV2Controller {
@@ -19,10 +20,13 @@ export default class ApiV2Controller {
 
   @Get('/:date')
   public getByDate(@Param('date') date: string) {
-    if (validateDate(date)) {
-      return this.getData(date);
-    }
+    try {
+      validateDate(date);
 
-    throw new Error(`The date format ${date} must follow YYYY-MM-DD and cannot be future.`);
+      return this.getData(date);
+    } catch (error) {
+      logger.error(error);
+      return new InternalServerError(error.message);
+    }
   }
 }

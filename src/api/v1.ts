@@ -8,12 +8,8 @@ import logger from '../common/utils/logger';
 @Controller()
 export default class ApiV1Controller {
   public async getData(date: string): Promise<any> {
-    try {
-      const data: SabespResponse = await Sabesp.info(date);
-      return Mapper.v1(data);
-    } catch (error) {
-      throw error;
-    }
+    const data: SabespResponse = await Sabesp.info(date);
+    return Mapper.v1(data);
   }
 
   @Get('/')
