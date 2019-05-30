@@ -26,6 +26,7 @@ describe('Utils: DateUtils', () => {
     });
 
     it('should throw an error when has a wrong format', () => {
+      // @ts-ignore
       expect(formatDate('somevalue')).to.eql('Invalid Date');
     });
   });
