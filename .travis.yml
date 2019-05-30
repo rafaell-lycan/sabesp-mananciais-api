@@ -3,5 +3,3 @@ node_js:
   - "10"
 services:
   - mongodb
-script:
-  - echo "skipping tests..."
