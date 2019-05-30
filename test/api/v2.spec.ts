@@ -3,7 +3,7 @@ import { agent, Response } from 'supertest';
 import App from '../../src/application';
 import { expect } from 'chai';
 
-describe('API V2 Controller', () => {
+describe('Routes: ApiV2Controller', () => {
   const { app } = new App();
 
   before((done) => {

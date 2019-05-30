@@ -3,7 +3,7 @@ import { agent, Response } from 'supertest';
 import App from '../../src/application';
 import { expect } from 'chai';
 
-describe('Index Controller', () => {
+describe('Routes: IndexController', () => {
   const { app } = new App();
 
   before((done) => {
