@@ -6,4 +6,10 @@ export default class IndexController {
   public health() {
     return { status: 'OK' };
   }
+
+  // Loader.io only
+  @Get('/loaderio-deb75e3581d893735fd6e5050757bdb2')
+  public loaderio() {
+    return true;
+  }
 }
