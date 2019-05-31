@@ -21,11 +21,12 @@ describe('Routes: IndexController', () => {
   });
 
   it('should return Loader.io key', (done) => {
+    const key = 'loaderio-deb75e3581d893735fd6e5050757bdb2';
     agent(app)
-      .get('/loaderio-deb75e3581d893735fd6e5050757bdb2')
+      .get(`/${key}`)
       .expect(200)
       .end((err: any, res: Response) => {
-        expect(res.text).eql('deb75e3581d893735fd6e5050757bdb2');
+        expect(res.text).eql(key);
         done();
       });
   });

@@ -10,6 +10,6 @@ export default class IndexController {
   // Loader.io only
   @Get('/loaderio-deb75e3581d893735fd6e5050757bdb2')
   public loaderio() {
-    return 'deb75e3581d893735fd6e5050757bdb2';
+    return 'loaderio-deb75e3581d893735fd6e5050757bdb2';
   }
 }
