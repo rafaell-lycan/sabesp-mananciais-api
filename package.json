@@ -56,7 +56,7 @@
     "invariant": "^2.2.4",
     "mongodb": "^3.2.4",
     "morgan": "^1.9.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "reflect-metadata": "^0.1.13",
     "request": "^2.55.0",
     "routing-controllers": "^0.7.7",
