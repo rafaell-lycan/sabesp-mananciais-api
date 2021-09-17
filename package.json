@@ -1,7 +1,7 @@
 {
   "name": "sabesp-mananciais-api",
   "version": "2.0.0",
-  "description": "A simple scraping from sabesp website",
+  "description": "A simple scraping from Sabesp website",
   "main": "build/server.js",
   "author": "Rafaell Lycan <sonny.webdsg@gmail.com> (https://rafaell-lycan.com)",
   "keywords": [
@@ -13,13 +13,9 @@
   "scripts": {
     "clean": "rm -rf build",
     "build": "yarn clean && tsc",
-    "develop": "export DEBUG=sabesp:* && yarn clean && ts-node-dev --respawn --transpileOnly src/server.ts",
-    "prod": "yarn build && node build/server.js",
-    "start:v2": "node build",
-    "start": "yarn prod",
-    "test": "nyc mocha test/**/*.spec.ts",
-    "generate-data": "node build/generator ?seed?",
-    "seed": "export DEBUG=sabesp:* && node seed.js"
+    "develop": "nodemon --watch src -x ts-node src/server.ts",
+    "start": "yarn build && node build/server.js",
+    "test": "nyc mocha test/**/*.spec.ts"
   },
   "nyc": {
     "extension": [
@@ -38,8 +34,7 @@
       "lcov"
     ],
     "require": [
-      "ts-node/register/transpile-only",
-      "source-map-support/register"
+      "ts-node/register/transpile-only"
     ],
     "sourceMap": true,
     "instrument": true
@@ -54,9 +49,9 @@
     "helmet": "^4.6.0",
     "invariant": "^2.2.4",
     "morgan": "^1.10.0",
-    "reflect-metadata": "^0.1.13",
-    "routing-controllers": "^0.9.0",
+    "serve-favicon": "^2.5.0",
     "swagger-ui-express": "^4.0.4",
+    "ts-node": "^10.2.1",
     "universal-analytics": "^0.4.23",
     "winston": "^3.3.3"
   },
@@ -65,7 +60,6 @@
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/invariant": "^2.2.35",
-    "@types/js-yaml": "^3.12.1",
     "@types/mocha": "^5.2.6",
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.9.1",
@@ -76,11 +70,10 @@
     "istanbul": "^0.4.5",
     "jshint": "^2.6.0",
     "mocha": "^6.1.4",
-    "nodemon": "^1.3.6",
+    "nodemon": "^2.0.12",
     "nyc": "^14.1.1",
     "prettier": "^2.4.1",
     "supertest": "^4.0.2",
-    "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.3"
   },
   "license": "MIT"
