@@ -1,7 +1,7 @@
 /**
- * Dam names avaiable
+ * Dam names available
  */
-export enum DamName {
+ export enum DamName {
   cantareira = 'Cantareira',
   altoTiete = 'Alto Tietê',
   guarapiranga = 'Guarapiranga',
@@ -12,7 +12,7 @@ export enum DamName {
 }
 
 /**
- * Pluviometry is a measure based on millimeters (mm)
+ * Measure based on millimeters (mm)
  */
 export interface Pluviometry {
   /**

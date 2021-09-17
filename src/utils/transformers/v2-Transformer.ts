@@ -1,6 +1,6 @@
-import { Dam } from './../entities/Dam';
+import { Dam } from '../../interfaces';
 
-export default class V2Transformer {
+export class V2Transformer {
   public static transform(dams: Dam[]) {
     return dams.map((dam: Dam) => {
       return {

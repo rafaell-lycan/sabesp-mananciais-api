@@ -11,5 +11,5 @@ export const validateDate = (value: string): boolean | Error => {
 };
 
 export const formatDate = (date: Date) => {
-  return format(date.toString(), 'YYYY-MM-DD');
+  return format(date, 'yyyy-MM-dd');
 };
