@@ -1,7 +1,5 @@
-import { expect } from 'chai';
-import Mapper from '../../src/services/Mapper';
-import { SabespDam } from './../../src/services/Sabesp';
-import { SabespResponse } from '../../src/services/Sabesp';
+import { mapV1, mapV2 } from '../../src/utils/mapper';
+import { SabespDam, SabespResponse } from '../../src/services/sabesp';
 
 describe('Services: Mapper', () => {
   const systems: Array<Partial<SabespDam>> = [
@@ -22,9 +20,9 @@ describe('Services: Mapper', () => {
   } as SabespResponse;
 
   it('should return the V1 format', () => {
-    const result = Mapper.v1(response);
-    expect(result.length).to.equal(1);
-    expect(result[0]).to.eql({
+    const result = mapV1(response);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toStrictEqual({
       name: 'Cantareira',
       data: [
         {
@@ -48,9 +46,9 @@ describe('Services: Mapper', () => {
   });
 
   it('should return the V2 format', () => {
-    const result = Mapper.v2(response);
-    expect(result.length).to.equal(1);
-    expect(result[0]).to.eql({
+    const result = mapV2(response);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toStrictEqual({
       name: 'Cantareira',
       data: {
         volume_armazenado: '100 %',

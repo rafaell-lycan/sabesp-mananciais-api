@@ -1,32 +1,25 @@
-import 'reflect-metadata';
 import { agent, Response } from 'supertest';
-import App from '../../src/application';
-import { expect } from 'chai';
+import { app } from '../../src/application';
 
-describe('Routes: IndexController', () => {
-  const { app } = new App();
+describe('api:routes:general', () => {
 
-  before((done) => {
-    setTimeout(done, 1000);
-  });
-
-  it('should return OK', (done) => {
+  it('returns OK', (done) => {
     agent(app)
-      .get('/health')
+      .get('/_health')
       .expect(200)
-      .end((err: any, res: Response) => {
-        expect(res.body).eql({ status: 'OK' });
+      .end((_: any, res: Response) => {
+        expect(res.body).toEqual({ status: 'OK' });
         done();
       });
   });
 
-  it('should return Loader.io key', (done) => {
+  it('returns the same Loader.io key the param', (done) => {
     const key = 'loaderio-deb75e3581d893735fd6e5050757bdb2';
     agent(app)
       .get(`/${key}`)
       .expect(200)
-      .end((err: any, res: Response) => {
-        expect(res.text).eql(key);
+      .end((_: any, res: Response) => {
+        expect(res.text).toBe(key);
         done();
       });
   });

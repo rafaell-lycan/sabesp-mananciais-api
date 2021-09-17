@@ -1,12 +1,13 @@
-import { expect } from 'chai';
-import Sabesp, { SabespResponse } from '../../src/services/Sabesp';
+import { getDamnsInformation } from '../../src/services/sabesp'
 
-describe('Services: Sabesp', () => {
-  const service = Sabesp;
+describe('getDamnsInformation', () => {
+  it('returns a response from Sabesp API', async () => {
+    const { FlagHasError, ReturnObj } = await getDamnsInformation('2019-1-1')
+    expect(FlagHasError).toBeFalsy()
+    expect(ReturnObj.DataString).toBe('01/01/2019')
+  })
 
-  it('should return a response from Sabesp API', async () => {
-    const { FlagHasError, ReturnObj }: SabespResponse = await service.info('2019-1-1');
-    expect(FlagHasError).to.false;
-    expect(ReturnObj.DataString).to.equal('01/01/2019');
-  });
-});
+  it('throws an error from Sabesp API', async () => {
+    await expect(() => getDamnsInformation('foo')).rejects.toThrow();
+  })
+})

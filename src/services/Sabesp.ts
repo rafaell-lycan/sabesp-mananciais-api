@@ -1,7 +1,7 @@
-import fetch, { Response } from 'node-fetch';
-import logger from '../common/utils/logger';
+import got from 'got';
+import {logger} from '../utils/logger';
 
-const SABESP_API_URI: string = 'http://mananciais.sabesp.com.br/api/Mananciais/ResumoSistemas';
+const API_BASE_URL = 'http://mananciais.sabesp.com.br/api/Mananciais/ResumoSistemas';
 
 export interface SabespDam {
   SistemaId: string;
@@ -27,8 +27,8 @@ export interface SabespResponse {
   FlagHasError: boolean;
   Message: string;
   ReturnObj: {
-    Data: '2019-05-25T00:00:00';
-    DataString: '25/05/2019';
+    Data: string;
+    DataString: string;
     sistemas: SabespDam[];
     total: {};
     cardSistema: string;
@@ -36,13 +36,16 @@ export interface SabespResponse {
   };
 }
 
-class Sabesp {
-  public async info(date: string): Promise<SabespResponse> {
-    logger.debug(`Sabesp Service:: Getting info for ${date}`);
-    const response: Response = await fetch(`${SABESP_API_URI}/${date}`);
-    logger.debug(`Sabesp Service:: Fetched with status ${response.status}`);
-    return response.json();
-  }
-}
+export async function getDamnsInformation(date: string): Promise<SabespResponse> {
+  try {
+    const { body } = await got(`${API_BASE_URL}/${date}`,
+      { https: { rejectUnauthorized: false }}
+    );
 
-export default new Sabesp();
+    return JSON.parse(body) as SabespResponse;
+  } catch (err) {
+    logger.error(err);
+    throw err;
+  }
+
+}
