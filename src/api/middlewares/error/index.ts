@@ -9,6 +9,8 @@ export const notFoundHandler = ({path}: Request, _res: Response, next: NextFunct
 
 export const errorHandler = (error: WebError, _req: Request, res: Response, _next: NextFunction) => {
   logger.error(JSON.stringify(error))
+  logger.error(error.message)
+  logger.error(error.stack)
   const message = error.message || 'Something went wrong. Please try again.';
   const status = error.status || 500;
 
