@@ -42,7 +42,7 @@
     "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0",
     "swagger-ui-express": "^4.1.6",
-    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3",
     "universal-analytics": "^0.4.23",
     "winston": "^3.3.3"
   },
@@ -61,7 +61,7 @@
     "prettier": "^2.4.1",
     "supertest": "^6.1.6",
     "ts-jest": "^27.0.5",
-    "typescript": "^4.4.3"
+    "ts-node": "^10.2.1"
   },
   "license": "MIT"
 }
