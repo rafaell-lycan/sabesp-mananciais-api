@@ -2,7 +2,7 @@
   "name": "sabesp-mananciais-api",
   "version": "2.0.0",
   "description": "A simple scraping from Sabesp website",
-  "main": "build/server.js",
+  "main": "dist/server.js",
   "author": "Rafaell Lycan <sonny.webdsg@gmail.com> (https://rafaell-lycan.com)",
   "keywords": [
     "sabesp",
@@ -11,10 +11,10 @@
     "água"
   ],
   "scripts": {
-    "clean": "rm -rf build",
+    "clean": "rm -rf dist",
     "build": "yarn clean && tsc",
     "develop": "nodemon --watch src -x ts-node src/server.ts",
-    "start": "yarn build && node build/server.js",
+    "start": "yarn build && node dist/server.js",
     "test": "jest"
   },
   "jest": {

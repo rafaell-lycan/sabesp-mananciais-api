@@ -30,7 +30,6 @@ report.*
 # Output dir
 lib
 dist
-build
 
 # Custom ignores
 package-lock.json
