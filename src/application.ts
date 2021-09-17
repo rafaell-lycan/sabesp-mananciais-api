@@ -5,7 +5,6 @@ import favicon from 'serve-favicon'
 import helmet from 'helmet'
 import morgan from 'morgan'
 
-// import swagger from './common/middleware/swagger'
 import { routes } from './api/routes'
 import { errorHandler, notFoundHandler } from './api/middlewares'
 
@@ -19,7 +18,6 @@ app.use(helmet())
 app.use(cors())
 app.use(morgan(app.get('prod') ? 'combined': 'dev'))
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')))
-// swagger(app)
 
 app.use(routes)
 

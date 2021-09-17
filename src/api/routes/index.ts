@@ -13,7 +13,7 @@ routes.get('/loaderio-deb75e3581d893735fd6e5050757bdb2', (_req, res) => {
   res.send('loaderio-deb75e3581d893735fd6e5050757bdb2')
 })
 
-routes.use('/', analytics, routesV1)
 routes.use('/v2', analytics, routesV2)
+routes.use('/', analytics, routesV1)
 
 export { routes }
