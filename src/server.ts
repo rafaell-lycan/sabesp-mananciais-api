@@ -1,16 +1,8 @@
 import 'dotenv/config'
 import { Server } from 'http'
-import errorhandler from 'errorhandler'
 
 import {app} from './application'
 import {logger} from './utils/logger'
-
-/**
- * Error Handler. Provides full stack
- */
-if (!app.get('prod')) {
-  app.use(errorhandler())
-}
 
 /**
  * Start Express server.
