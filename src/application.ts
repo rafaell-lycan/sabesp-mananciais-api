@@ -17,7 +17,7 @@ app.set('port', process.env.PORT ? parseInt(process.env.PORT, 10) : 3000)
 app.use(helmet())
 app.use(cors())
 app.use(morgan(app.get('prod') ? 'combined': 'dev'))
-app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')))
+app.use(favicon(path.join(process.cwd(), 'public', 'favicon.ico')))
 
 app.use(routes)
 

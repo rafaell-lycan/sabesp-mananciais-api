@@ -1,6 +1,8 @@
 import { createLogger, config, format, transports } from 'winston';
 
 const options = {
+  // logs the error but don't terminate the pid
+  exitOnError: false,
   levels: config.syslog.levels,
   format: format.combine(
     format.label({ label: 'server' }),
