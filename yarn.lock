@@ -748,6 +748,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/serve-favicon@^2.5.3":
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/@types/serve-favicon/-/serve-favicon-2.5.3.tgz#6380c875059711090631abea8f3edc5906cccd32"
+  integrity sha512-HirXLRJjLXzwiSnjhE1vMu55X7+qaY+noXsKqi/7eK1uByl3L6TwkcALZuJnQXqOalMdmBz3b662yXvaR+89Vw==
+  dependencies:
+    "@types/express" "*"
+
 "@types/serve-static@*":
   version "1.13.10"
   resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.10.tgz#f5e0ce8797d2d7cc5ebeda48a52c96c4fa47a8d9"

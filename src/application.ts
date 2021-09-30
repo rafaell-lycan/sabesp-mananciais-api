@@ -10,7 +10,7 @@ import { errorHandler, notFoundHandler } from './api/middlewares'
 
 const app = express()
 
-app.set('prod', ['production', 'heroku'].includes(process.env.NODE_ENV))
+app.set('prod', ['production', 'heroku'].includes(process.env.NODE_ENV || ''))
 app.set('env', process.env.NODE_ENV ? process.env.NODE_ENV : 'development')
 app.set('port', process.env.PORT ? parseInt(process.env.PORT, 10) : 3000)
 
